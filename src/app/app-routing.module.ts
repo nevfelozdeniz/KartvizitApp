@@ -6,17 +6,19 @@ import { AboutComponent } from './components/about/about.component';
 
 const routes: Routes = [
   {
-    path:'',
+    path: '',
     component: HomeComponent
   },
   {
-    path:'header',
-    component:HeaderComponent
+    path: 'header',
+    component: HeaderComponent
   },
   {
-    path:'about',
+    path: 'about',
     component: AboutComponent
-  }
+  },
+  { path: 'cards', loadChildren: () => import('./cards/cards.module').then(m => m.CardsModule) } //lazy loading 
+  //loadChildren => sadece cards rotası çalıştığı zaman CardsModule ü yükle. Projenin ilk açılış süresi ve boyutunda etkili
 ];
 
 @NgModule({

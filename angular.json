@@ -95,9 +95,10 @@
             ],
             "styles": [
               "@angular/material/prebuilt-themes/indigo-pink.css",
-              "src/styles.scss"
+              "src/styles.scss",
+              "@angular/bootstrap/dist/css/bootstrap.css"
             ],
-            "scripts": []
+            "scripts": ["@angular/bootstrap/dist/js/bootstrap.js"]
           }
         }
       }
