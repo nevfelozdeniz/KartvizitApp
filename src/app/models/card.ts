@@ -6,6 +6,5 @@ export interface Card {
     email?: string;
     website?: string;
     address?: string;
-    street?: string;
 }
 //Dakika 34.40 ta kaldın...

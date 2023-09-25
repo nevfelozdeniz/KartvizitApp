@@ -16,7 +16,7 @@ export class CardsComponent implements OnInit {
     title: 'Frontend Developer',
     phone: '0539 677 4753',
     email: 'nevfelo@gmail.com',
-    site: 'https://github.com/nevfelozdeniz',
+    website: 'https://github.com/nevfelozdeniz',
     address: 'Çorlu, Tekirdağ'
   };
 
