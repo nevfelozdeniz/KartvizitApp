@@ -1,6 +1,6 @@
 <mat-card class="card-item">
     <mat-card-header>
-        <mat-card-title>{{card.name}}</mat-card-title>
+        <mat-card-title>{{card.name || 'We are also anonymous:)'}}</mat-card-title>
         <mat-card-subtitle>{{card.title}}</mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
@@ -12,13 +12,13 @@
             </li>
             <li class="list-group-item">
                 <span *ngIf="card.website"><a href="{{card.website}}" target="_blank">{{card.website}}</a></span>
-                <!-- <small class="text-warning">Web Site girilmemiş.</small> -->
+                <small class="text-warning" *ngIf="!card.website">Web Site girilmemiş.</small>
             </li>
-            <!-- <li class="list-group-item">
+            <li class="list-group-item">
               
-                <span *ngIf="card.email">{{card.address}}</span>
+                <span *ngIf="card.address?.city">{{card.address?.city}}</span>
                 <small class="text-warning" *ngIf="!card.address">Adres girilmemiş.</small>
-            </li> -->
+            </li>
         </ul>
     </mat-card-content>
 </mat-card>

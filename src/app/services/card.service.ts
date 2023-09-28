@@ -9,12 +9,17 @@ export class CardService {
 
   constructor(
     @Inject('apiUrl') private apiUrl: string, //app.module.ts de ki provide dan geliyor.
-    private http: HttpClient
+    private http: HttpClient,
+
   ) { }
 
   getCards(): Observable<Card[]> {
 
     return this.http.get<Card[]>(this.apiUrl + '/users');
 
+  }
+
+  addCard(card:Card){
+    return this.http.post(this.apiUrl+ '/users',card)
   }
 }

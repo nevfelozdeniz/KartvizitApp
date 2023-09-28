@@ -17,7 +17,7 @@ export class CardsComponent implements OnInit {
     phone: '0539 677 4753',
     email: 'nevfelo@gmail.com',
     website: 'https://github.com/nevfelozdeniz',
-    address: 'Çorlu, Tekirdağ'
+    city: 'Çorlu, Tekirdağ'
   };
 
   //Dakika 48:00 de kaldın
@@ -29,14 +29,18 @@ export class CardsComponent implements OnInit {
   }
 
   openAddCardModal(): void {
-    this.dialog.open(CardModalComponent, {
+   const dialog = this.dialog.open(CardModalComponent, {
       width: '400px'
     });
+
+    dialog.afterClosed().subscribe( res=>{
+      console.log(res)
+    })
   }
 
-  getCards():void {
+  getCards():void { // subscribe ve res crystal clear değil.
     this.cardService.getCards().subscribe((res: Card[]) => {
-      console.log(res);
+      // console.log(res);
         this.cards = res;
     })
   }

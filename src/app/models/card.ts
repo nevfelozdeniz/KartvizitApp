@@ -1,3 +1,5 @@
+import { Address } from "./address";
+
 export interface Card {
 
     name?: string;
@@ -5,6 +7,7 @@ export interface Card {
     phone: string;
     email?: string;
     website?: string;
-    address?: string;
+    address?: Address;
+    nevAddress?:string;
 }
-//Dakika 34.40 ta kaldın...
+
