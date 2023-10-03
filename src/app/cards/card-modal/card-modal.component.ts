@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, inject } from '@angular/core';
 import { Form, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Card } from 'src/app/models/card';
 import { CardService } from 'src/app/services/card.service';
 
 @Component({
@@ -14,37 +15,42 @@ export class CardModalComponent implements OnInit {
   cardForm!: FormGroup;
 
   constructor(
-    private dialogRef:MatDialogRef<CardModalComponent>,
+    private dialogRef: MatDialogRef<CardModalComponent>,
     private fb: FormBuilder,
-    private cardService:CardService,
-    private _snackBar :MatSnackBar
+    private cardService: CardService,
+    private _snackBar: MatSnackBar,
+    @Inject(MAT_DIALOG_DATA) public data: Card
   ) {
 
   }
 
   ngOnInit(): void {
+    console.log(this.data);
     this.cardForm = this.fb.group({
-      name: ['', Validators.maxLength(50)],
-      title: ['', [Validators.required, Validators.maxLength(50)]],
-      phone: ['', [Validators.required, Validators.maxLength(50)]],
-      email: ['', [Validators.email,Validators.maxLength(50)]],
-      website: ['', Validators.maxLength(50)],
-      city: ['', Validators.maxLength(100)]
+      name: [this.data?.name || '', Validators.maxLength(50)],
+      title: [this.data?.title || '', [Validators.required, Validators.maxLength(50)]],
+      phone: [this.data?.phone || '', [Validators.required, Validators.maxLength(50)]],
+      email: [this.data?.email || '', [Validators.email, Validators.maxLength(50)]],
+      website: [this.data?.website || '', Validators.maxLength(50)],
+      city: [this.data?.address?.city || '', Validators.maxLength(100)]
     });
   }
 
   addCard(): void {
     // console.log(this.cardForm.value);
-    this.cardService.addCard(this.cardForm.value).subscribe((res:any)=>{
+    this.cardService.addCard(this.cardForm.value).subscribe((res: any) => {
       console.log(res);
-
-
-        this._snackBar.open('Kartvizit Eklendi.','Kapat');
-
-      this.dialogRef.close();
-    })
+      this._snackBar.open('Kartvizit Eklendi.', 'Kapat');
+    });
+    this.dialogRef.close(true);
   }
 
+  updateCard(): void {
+this.cardService.updateCard(this.cardForm.value,this.data.id)
+.subscribe((res:any)=>{
+  console.log(res)
+});
+  }
 }
 
 

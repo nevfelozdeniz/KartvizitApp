@@ -12,6 +12,7 @@ import { Card } from '../models/card';
 export class CardsComponent implements OnInit {
   cards!: Card[];
   cardItem = {
+    id: 1,
     name: 'Nevfel Gökberk Özdeniz',
     title: 'Frontend Developer',
     phone: '0539 677 4753',
@@ -34,13 +35,14 @@ export class CardsComponent implements OnInit {
     });
 
     dialog.afterClosed().subscribe( res=>{
-      console.log(res)
+    if (res) {
+      this.getCards();
+    }
     })
   }
 
   getCards():void { // subscribe ve res crystal clear değil.
     this.cardService.getCards().subscribe((res: Card[]) => {
-      // console.log(res);
         this.cards = res;
     })
   }

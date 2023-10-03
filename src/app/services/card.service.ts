@@ -19,7 +19,11 @@ export class CardService {
 
   }
 
-  addCard(card:Card){
+  addCard(card:Card):Observable<any>{
     return this.http.post(this.apiUrl+ '/users',card)
+  }
+
+  updateCard(card:Card,cardId:number):Observable<any>{ //dakika 1:18:00 değişecek. şuan için işlevsiz
+    return this.http.put(this.apiUrl+ '/users',card)
   }
 }
