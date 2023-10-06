@@ -10,7 +10,7 @@ import { Card } from '../models/card';
   styleUrls: ['./cards.component.scss']
 })
 export class CardsComponent implements OnInit {
-  cards!: Card[];
+
   cardItem = {
     id: 1,
     name: 'Nevfel Gökberk Özdeniz',
@@ -23,27 +23,18 @@ export class CardsComponent implements OnInit {
 
   //Dakika 48:00 de kaldın
   constructor(public dialog: MatDialog,
-    private cardService: CardService) { }
+    public cardService: CardService) { }
 
   ngOnInit(): void {
-    this.getCards();
+    this.cardService.getCards();
   }
 
   openAddCardModal(): void {
-   const dialog = this.dialog.open(CardModalComponent, {
+    this.dialog.open(CardModalComponent, {
       width: '400px'
     });
 
-    dialog.afterClosed().subscribe( res=>{
-    if (res) {
-      this.getCards();
-    }
-    })
   }
 
-  getCards():void { // subscribe ve res crystal clear değil.
-    this.cardService.getCards().subscribe((res: Card[]) => {
-        this.cards = res;
-    })
-  }
+
 }
