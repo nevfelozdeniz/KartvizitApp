@@ -33,6 +33,6 @@ export class CardService {
   }
 
   deleteCard(cardId: number): Observable<any> {
-    return this.http.delete(this.apiUrl + '/cards/')
+    return this.http.delete(this.apiUrl + '/cards/'+cardId)
   }
 }
