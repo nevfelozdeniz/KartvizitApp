@@ -69,4 +69,4 @@ export class CardModalComponent implements OnInit {
 
 
 
-// Dakika 01:07:40 ta kaldın.
+//010740
