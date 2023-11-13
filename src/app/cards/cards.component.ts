@@ -21,7 +21,7 @@ export class CardsComponent implements OnInit {
     city: 'Çorlu, Tekirdağ'
   };
 
-  //Dakika 48:00 de kaldın
+  //4800
   constructor(public dialog: MatDialog,
     public cardService: CardService) { }
 
